@@ -1,4 +1,5 @@
-from selene import browser, have
+from selene import browser
 
-def test_demoqa
+
+def test_demoqa():
     browser.open('https://demoqa.com/automation-practice-form')

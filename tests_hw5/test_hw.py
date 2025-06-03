@@ -21,4 +21,8 @@ def test_demoqa():
 
     browser.element('#uploadPicture').send_keys(os.path.abspath('dog.jpeg'))
     browser.element('#currentAddress').set_value('Moscow, Line')
+    browser.element('#react-select-3-input').type('NCR').press_enter()
+    browser.element('#react-select-4-input').type('Delhi').press_enter()
+    browser.element('#submit').click()
+
 

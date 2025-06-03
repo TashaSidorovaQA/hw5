@@ -1,3 +1,5 @@
+import os
+
 from selene import browser
 
 
@@ -16,4 +18,7 @@ def test_demoqa():
     browser.element('[aria-label="Choose Sunday, April 3rd, 1977"]').click()
     browser.element('#subjectsInput').type('Kuku').press_enter()
     browser.element('[for="hobbies-checkbox-1"]').click()
+
+    browser.element('#uploadPicture').send_keys(os.path.abspath('dog.jpeg'))
+    browser.element('#currentAddress').set_value('Moscow, Line')
 

@@ -1,28 +1,38 @@
 import os
-
-from selene import browser
+from selene import browser, have
 
 
 def test_demoqa():
+    #открыть браузер
     browser.open('https://demoqa.com/automation-practice-form')
+
+    #заполнить поля
     browser.element('#firstName').type('Natasha').press_tab()
     browser.element('#lastName').type('Sidorova').press_tab()
-    browser.element('#userEmail').type('natasha771@mail.ru')
+    browser.element('#userEmail').type('natasha147@mail.ru')
     browser.element('[for="gender-radio-2"]').click()
-    browser.element('#userNumber').type('+79652014545')
+    browser.element('#userNumber').type('89652014545')
     browser.element('#dateOfBirthInput').click()
     browser.element('.react-datepicker__year-select').click()
     browser.element('[value="1977"]').click()
     browser.element('.react-datepicker__month-select').click()
     browser.element('[value="3"]').click()
     browser.element('[aria-label="Choose Sunday, April 3rd, 1977"]').click()
-    browser.element('#subjectsInput').type('Kuku').press_enter()
+    browser.element('#subjectsInput').type('English').press_enter()
     browser.element('[for="hobbies-checkbox-1"]').click()
-
-    browser.element('#uploadPicture').send_keys(os.path.abspath('dog.jpeg'))
-    browser.element('#currentAddress').set_value('Moscow, Line')
+    browser.element("#uploadPicture").send_keys(os.path.abspath('dog.jpeg'))
+    browser.element('#currentAddress').type('Moscow, Line')
     browser.element('#react-select-3-input').type('NCR').press_enter()
     browser.element('#react-select-4-input').type('Delhi').press_enter()
+
+    #отправить данные
     browser.element('#submit').click()
 
+    #проверить данные
+    browser.element('.table-responsive').all('td').even.should(have.exact_texts
+    (f'Natasha Sidorova', 'natasha147@mail.ru', 'Female',
+    '89652014545', '3 April,1977', 'English',
+    'Sports',
+    'dog.jpeg',
+    'Moscow, Line', 'NCR Delhi'))
 

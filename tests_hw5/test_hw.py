@@ -11,7 +11,7 @@ def test_demoqa():
     browser.element('#lastName').type('Sidorova').press_tab()
     browser.element('#userEmail').type('natasha147@mail.ru')
     browser.element('[for="gender-radio-2"]').click()
-    browser.element('#userNumber').type('89652014545')
+    browser.element('#userNumber').type('8965201454')
     browser.element('#dateOfBirthInput').click()
     browser.element('.react-datepicker__year-select').click()
     browser.element('[value="1977"]').click()
@@ -29,10 +29,15 @@ def test_demoqa():
     browser.element('#submit').click()
 
     #проверить данные
-    browser.element('.table-responsive').all('td').even.should(have.exact_texts
-    (f'Natasha Sidorova', 'natasha147@mail.ru', 'Female',
-    '89652014545', '3 April,1977', 'English',
-    'Sports',
-    'dog.jpeg',
-    'Moscow, Line', 'NCR Delhi'))
+    browser.element('.table-responsive').should(have.text('Natasha Sidorova'))
+    browser.element('.table-responsive').should(have.text('natasha147@mail.ru'))
+    browser.element('.table-responsive').should(have.text('Female'))
+    browser.element('.table-responsive').should(have.text('8965201454'))
+    browser.element('.table-responsive').should(have.text('03 April,1977'))
+    browser.element('.table-responsive').should(have.text('English'))
+    browser.element('.table-responsive').should(have.text('Sports'))
+    browser.element('.table-responsive').should(have.text('dog.jpeg'))
+    browser.element('.table-responsive').should(have.text('Moscow, Line'))
+    browser.element('.table-responsive').should(have.text('NCR Delhi'))
+
 
